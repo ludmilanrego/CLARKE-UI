@@ -26,8 +26,49 @@ export default function Table() {
     const [page, setPage] = useState(1)
     const maxNumberPerPage = 5
 
+    function sortString(localSupplierList, choosedColumn) {
+        if (sortList[choosedColumn]) {
+            localSupplierList.sort((a, b) => {
+                if (a[choosedColumn].toLowerCase() > b[choosedColumn].toLowerCase()) {
+                    return 1;
+                }
+                if (a[choosedColumn].toLowerCase() < b[choosedColumn].toLowerCase()) {
+                    return -1;
+                }
+                return 0;;
+            });
+            setSupplierList(localSupplierList)
+        }
+        if (!sortList[choosedColumn]) {
+            localSupplierList.sort((a, b) => {
+                if (a[choosedColumn].toLowerCase() > b[choosedColumn].toLowerCase()) {
+                    return -1;
+                }
+                if (a[choosedColumn].toLowerCase() < b[choosedColumn].toLowerCase()) {
+                    return 1;
+                }
+                return 0;;
+            });
+            setSupplierList(localSupplierList)
+        }
+    }
 
-    function toogleSortOfList(sortedColumn) {
+    function sortNumber(localSupplierList, choosedColumn) {
+        if (sortList[choosedColumn]) {
+            localSupplierList.sort((a, b) => {
+                return a[choosedColumn] - b[choosedColumn];
+            });
+            setSupplierList(localSupplierList)
+        }
+        if (!sortList[choosedColumn]) {
+            localSupplierList.sort((a, b) => {
+                return b[choosedColumn] - a[choosedColumn];
+            });
+            setSupplierList(localSupplierList)
+        }
+    }
+
+    function toogleSortOfList(choosedColumn) {
         const resetSort = {
             name: false,
             origin_state: false,
@@ -36,38 +77,18 @@ export default function Table() {
             costumers_score: false
         }
 
-        setSortList({ ...resetSort, [sortedColumn]: !sortList.sortedColumn })
-        let localSupplierList = supplierList
-        if (sortList.sortedColumn) {
-            localSupplierList.sort((a, b) => {
-                if (a.sortedColumn.toLowerCase() > b.sortedColumn.toLowerCase()) {
-                    return 1;
-                }
-                if (a.sortedColumn.toLowerCase() < b.sortedColumn.toLowerCase()) {
-                    return -1;
-                }
-                return 0;;
-            });
+        setSortList({ ...resetSort, [choosedColumn]: !sortList[choosedColumn] })
 
-            setSupplierList(localSupplierList)
-        }
-        if (!sortList.sortedColumn) {
-            localSupplierList.sort((a, b) => {
-                if (a.sortedColumn.toLowerCase() > b.sortedColumn.toLowerCase()) {
-                    return -1;
-                }
-                if (a.sortedColumn.toLowerCase() < b.sortedColumn.toLowerCase()) {
-                    return 1;
-                }
-                return 0;;
-            });
+        let localSupplierList = [...supplierList]
 
-            setSupplierList(localSupplierList)
+        if (choosedColumn === "name" || choosedColumn === "origin_state") {
+            sortString(localSupplierList, choosedColumn)
+        } else {
+            sortNumber(localSupplierList, choosedColumn)
         }
     }
 
     function ajustPage(list) {
-
         const itemsCountEnd = (maxNumberPerPage * page);
         const itemsCountStart = maxNumberPerPage * (page - 1);
 
@@ -125,20 +146,36 @@ export default function Table() {
 
                 <div className='table-row-section cost-per-kwh'>
                     <span className='description'>Custo/kWh</span>
+                    <img
+                        className="triangle-img"
+                        src={Triangle}
+                        alt="ordenar-lista"
+                        onClick={() => toogleSortOfList("cost_per_kwh")}
+                    />
                 </div>
 
                 <div className='table-row-section total-clients'>
                     <span className='description'>Número Total de Clientes</span>
+                    <img
+                        className="triangle-img"
+                        src={Triangle}
+                        alt="ordenar-lista"
+                        onClick={() => toogleSortOfList("total_costumers")}
+                    />
                 </div>
 
                 <div className='table-row-section score'>
                     <span className='description'>Avaliação de Clientes</span>
+                    <img
+                        className="triangle-img"
+                        src={Triangle}
+                        alt="ordenar-lista"
+                        onClick={() => toogleSortOfList("costumers_score")}
+                    />
                 </div>
-                {/* <div className='table-row-section icons'></div> */}
             </div>
             {
                 ajustPage(supplierList).map((supplier) => (
-                    // supplierList.map((supplier) => (
                     <TableRow
                         key={supplier.id}
                         supplier={supplier}
