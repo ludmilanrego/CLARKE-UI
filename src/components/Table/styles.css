@@ -1,0 +1,108 @@
+.table {
+    margin-top: 6.1rem;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    min-width: 60rem;
+    height: 5.8rem;
+
+    background: var(--light-gray);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    margin-bottom: 0.5rem;
+}
+
+.table-header span {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+
+    color: #000000;
+}
+
+/* .table-header div {
+    display: flex;
+    align-items: center;
+
+} */
+
+.triangle-img {
+    width: 1.5rem;
+    height: 8rem;
+    cursor: pointer;
+}
+
+.description {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+
+    color: #000000;
+}
+
+.table-row-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-row-logo {
+    width: 10%;
+}
+
+.name {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.origin-state {
+    width: 20%;
+}
+
+.cost-per-kwh {
+    width: 17%;
+}
+
+.total-clients {
+    width: 16%;
+}
+
+.score {
+    width: 17%;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    min-width: 60rem;
+    height: 5.8rem;
+
+    background: var(--light-gray);
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+
+    margin-top: 0.5rem;
+}
+
+/* @media (max-width:998px) {
+
+    .table {
+        overflow-x: scroll;
+    }
+} */

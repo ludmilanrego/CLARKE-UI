@@ -1,0 +1,95 @@
+#pop-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 11.1rem;
+    height: 5.3rem;
+
+    position: absolute;
+    top: 0;
+
+    background: #E4F2FD;
+    border-radius: 4px;
+}
+
+#pop-up div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#pop-up-title {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.0rem;
+    line-height: 1.2rem;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: var(--black);
+}
+
+#pop-up button {
+    width: 3.7rem;
+    height: 1.5rem;
+    border-radius: 4px;
+
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.1rem;
+
+    /* display: flex;
+    align-items: center;
+    text-align: center; */
+
+    color: var(--white);
+}
+
+#pop-up-confirm {
+    background: var(--light-blue);
+}
+
+#pop-up-cancel {
+    background: var(--light-red);
+}
+
+.table-row-section .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+}
+
+.table-row-date {
+    width: 13%;
+}
+
+.day-of-week {
+    width: 13%;
+}
+
+.table-row-description {
+    width: 27%;
+}
+
+.table-row-category {
+    width: 20%;
+}
+
+.table-row-value {
+    width: 14%;
+}
+
+.icons {
+    width: 13%;
+
+}

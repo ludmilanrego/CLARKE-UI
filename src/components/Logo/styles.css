@@ -1,0 +1,17 @@
+/* .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.3rem;
+}
+
+@media (max-width:450px) {
+    .logo-title {
+        display: none;
+    }
+} */
+
+.logo-img {
+    width: 20rem;
+    height: 3.36rem;
+}

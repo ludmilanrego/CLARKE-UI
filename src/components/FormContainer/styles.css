@@ -1,0 +1,94 @@
+.form-img {
+    width: 40vw;
+    height: 100vh;
+    background-image: url('../../assets/computer-app-clarke.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.form-container {
+    width: 60vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding-top: 20rem;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.input-container label {
+    display: block;
+    font-size: 2.5rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    color: rgb(0 0 0 / 1);
+
+    margin-bottom: 3rem;
+}
+
+.input-container input {
+    width: 38rem;
+    height: 5rem;
+
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+}
+
+.user-form {
+    width: 70%;
+    height: 40%;
+
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-confirm-button {
+    width: 23.6rem;
+    height: 4.6rem;
+
+    margin-top: 3rem;
+}
+
+@media (max-width:994px) {
+    .user-form {
+        width: 90%;
+    }
+}
+
+@media (max-width:730px) {
+    .form-img {
+        display: none;
+    }
+
+    .form-container {
+        width: 100vw;
+
+    }
+}
+
+@media (max-width:450px) {
+
+    .input-container label {
+        font-size: 2rem;
+    }
+
+    .input-container input {
+        width: 25rem;
+    }
+}

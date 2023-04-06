@@ -1,0 +1,64 @@
+.table-row {
+    display: flex;
+    /* justify-content: space-around;
+    align-items: center; */
+    border-bottom: 1px solid #E0E0E0;
+    border-radius: 0.5rem;
+
+    background-color: white;
+    min-width: 60rem;
+    height: 5.8rem;
+
+    margin-bottom: 1px;
+}
+
+.bold {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+}
+
+.description {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+
+    color: #000000;
+}
+
+.table-row-logo {
+    width: 10%;
+}
+
+.supplier-logo-img {
+    width: 70px;
+    height: 35px;
+}
+
+.name {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.origin-state {
+    width: 20%;
+}
+
+.cost-per-kwh {
+    width: 17%;
+}
+
+.total-clients {
+    width: 16%;
+}
+
+.score {
+    width: 17%;
+}
