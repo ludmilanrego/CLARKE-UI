@@ -12,137 +12,115 @@ import UserContext from '../../contexts/UserContext';
 
 export default function Table() {
 
-    const { supplierList } = useContext(UserContext)
+    const { supplierList, setSupplierList } = useContext(UserContext)
 
-    // const [sortUpOn, setSortUpOn] = useState(true)
+    const [sortList, setSortList] = useState(
+        {
+            name: false,
+            origin_state: false,
+            cost_per: false,
+            total_costumers: false,
+            costumers_score: false
+        })
 
-    // const [page, setPage] = useState(1)
-    // const maxNumberPerPage = 5
+    const [page, setPage] = useState(1)
+    const maxNumberPerPage = 5
 
 
-    // function toogleSortOfList() {
+    function toogleSortOfList(sortedColumn) {
+        const resetSort = {
+            name: false,
+            origin_state: false,
+            cost_per: false,
+            total_costumers: false,
+            costumers_score: false
+        }
 
-    //     setSortUpOn(!sortUpOn)
+        setSortList({ ...resetSort, [sortedColumn]: !sortList.sortedColumn })
+        let localSupplierList = supplierList
+        if (sortList.sortedColumn) {
+            localSupplierList.sort((a, b) => {
+                if (a.sortedColumn.toLowerCase() > b.sortedColumn.toLowerCase()) {
+                    return 1;
+                }
+                if (a.sortedColumn.toLowerCase() < b.sortedColumn.toLowerCase()) {
+                    return -1;
+                }
+                return 0;;
+            });
 
-    //     if (sortUpOn) {
-    //         let localFilteredTransactions = filteredTransactions
+            setSupplierList(localSupplierList)
+        }
+        if (!sortList.sortedColumn) {
+            localSupplierList.sort((a, b) => {
+                if (a.sortedColumn.toLowerCase() > b.sortedColumn.toLowerCase()) {
+                    return -1;
+                }
+                if (a.sortedColumn.toLowerCase() < b.sortedColumn.toLowerCase()) {
+                    return 1;
+                }
+                return 0;;
+            });
 
-    //         localFilteredTransactions.sort((a, b) => {
-    //             return (+(new Date(a.data))) - (+ (new Date(b.data)));
-    //         });
+            setSupplierList(localSupplierList)
+        }
+    }
 
-    //         setFilteredTransactions(localFilteredTransactions)
-    //     }
-    //     if (!sortUpOn) {
-    //         let localFilteredTransactions = filteredTransactions
+    function ajustPage(list) {
 
-    //         localFilteredTransactions.sort((a, b) => {
-    //             return (+(new Date(b.data))) - (+ (new Date(a.data)));
-    //         });
+        const itemsCountEnd = (maxNumberPerPage * page);
+        const itemsCountStart = maxNumberPerPage * (page - 1);
 
-    //         setFilteredTransactions(localFilteredTransactions)
-    //     }
-    // }
+        return list.slice(itemsCountStart, itemsCountEnd)
+    }
 
-    // function ajustPage(list) {
+    function decreasePage(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //     const itemsCountEnd = (maxNumberPerPage * page);
-    //     const itemsCountStart = maxNumberPerPage * (page - 1);
+        if (page === 1) {
+            return
+        }
 
-    //     return list.slice(itemsCountStart, itemsCountEnd)
-    // }
+        const decreasedPage = page - 1
+        setPage(decreasedPage)
+    }
 
-    // function decreasePage(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
+    function increasePage(event, list) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //     if (page === 1) {
-    //         return
-    //     }
+        if (((page * maxNumberPerPage)) >= list.length) {
+            return
+        }
 
-    //     const decreasedPage = page - 1
-    //     setPage(decreasedPage)
-    // }
+        const increasedPage = page + 1
+        setPage(increasedPage)
+    }
 
-    // function increasePage(event, list) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-
-    //     if (((page * maxNumberPerPage)) > list.length) {
-    //         return
-    //     }
-
-    //     const increasedPage = page + 1
-    //     setPage(increasedPage)
-    // }
-
-    // const supplierList = [
-    //     {
-    //         id: 0,
-    //         name: "teste1",
-    //         img: "imagem",
-    //         origin_state: "Bahia",
-    //         cost_per_kwh: 10,
-    //         min_kwh: 10,
-    //         total_costumers: 100,
-    //         costumers_score: 4
-    //     },
-    //     {
-    //         id: 1,
-    //         name: "teste1",
-    //         img: "imagem",
-    //         origin_state: "Bahia",
-    //         cost_per_kwh: 10,
-    //         min_kwh: 10,
-    //         total_costumers: 105,
-    //         costumers_score: 5
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "teste1",
-    //         img: "imagem",
-    //         origin_state: "Bahia",
-    //         cost_per_kwh: 10,
-    //         min_kwh: 10,
-    //         total_costumers: 12,
-    //         costumers_score: 3
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "teste1",
-    //         img: "imagem",
-    //         origin_state: "Bahia",
-    //         cost_per_kwh: 10,
-    //         min_kwh: 10,
-    //         total_costumers: 10,
-    //         costumers_score: 5
-    //     }
-    // ]
 
     return (
         <div className='table'>
             <div className='table-header'>
-                <div className='table-row-section table-row-logo'>
-                    {/* <img
-                        className="triangle-img"
-                        src={Triangle}
-                        alt="ordenar-lista"
-                        onClick={() => toogleSortOfList()}
-                    ></img> */}
-                </div>
-
+                <div className='table-row-section table-row-logo'></div>
                 <div className='table-row-section name'>
                     <span className='description'> Fornecedor </span>
                     <img
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                    // onClick={() => toogleSortOfList()}
-                    ></img>
+                        onClick={() => toogleSortOfList("name")}
+                    />
                 </div>
 
                 <div className='table-row-section origin-state'>
                     <span className='description'>Estado de Origem</span>
+                    <img
+                        className="triangle-img"
+                        src={Triangle}
+                        alt="ordenar-lista"
+                        onClick={() => toogleSortOfList("origin_state")}
+                    />
                 </div>
 
                 <div className='table-row-section cost-per-kwh'>
@@ -159,27 +137,27 @@ export default function Table() {
                 {/* <div className='table-row-section icons'></div> */}
             </div>
             {
-                // ajustPage(supplierList).map((supplier) => (
-                supplierList.map((supplier) => (
+                ajustPage(supplierList).map((supplier) => (
+                    // supplierList.map((supplier) => (
                     <TableRow
                         key={supplier.id}
                         supplier={supplier}
-                    ></TableRow>
+                    />
                 ))
             }
             <div className='table-footer'>
                 <img
-                    className="exit-img"
+                    className="page-nav-img"
                     src={NavLeft}
                     alt="retomar-pagina"
-                // onClick={(event) => decreasePage(event, filteredTransactions)}
-                ></img>
+                    onClick={(event) => decreasePage(event)}
+                />
                 <img
-                    className="exit-img"
+                    className="page-nav-img"
                     src={NavRight}
                     alt="avançar-pagina"
-                // onClick={(event) => increasePage(event, filteredTransactions)}
-                ></img>
+                    onClick={(event) => increasePage(event, supplierList)}
+                />
             </div>
         </div>
     )
