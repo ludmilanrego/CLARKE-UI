@@ -8,6 +8,7 @@ export default function Logo() {
             <img
                 className="logo-img"
                 src={LogoText}
+                alt="logo"
             ></img>
         </div>
     )

@@ -1,26 +1,6 @@
 import './styles.css';
-import { useState } from 'react'
-import { dayOfWeekInPortuguese, formatToModelDate } from '../../utils/dateFormat'
-
-import EditIcon from '../../assets/Edit-icon.svg'
-import TrashIcon from '../../assets/Trash-Icon.svg'
-
-import PopUp from '../PopUp'
-
-import { useContext } from 'react';
-import UserContext from '../../contexts/UserContext';
 
 export default function TableRow({ supplier }) {
-
-    // const { setModal } = useContext(UserContext)
-    // const [showPopUp, setShowPopUp] = useState(false)
-
-    // function activateShowPopUp(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-
-    //     setShowPopUp(true)
-    // }
 
     return (
         <div className='table-row'>

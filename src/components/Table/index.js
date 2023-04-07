@@ -10,6 +10,8 @@ import NavLeft from '../../assets/navigate_left.png';
 import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
 
+import { sortUpString, sortDownString, sortUpNumber, sortDownNumber } from '../../utils/sort'
+
 export default function Table() {
 
     const { supplierList, setSupplierList } = useContext(UserContext)
@@ -26,49 +28,7 @@ export default function Table() {
     const [page, setPage] = useState(1)
     const maxNumberPerPage = 5
 
-    function sortString(localSupplierList, choosedColumn) {
-        if (sortList[choosedColumn]) {
-            localSupplierList.sort((a, b) => {
-                if (a[choosedColumn].toLowerCase() > b[choosedColumn].toLowerCase()) {
-                    return 1;
-                }
-                if (a[choosedColumn].toLowerCase() < b[choosedColumn].toLowerCase()) {
-                    return -1;
-                }
-                return 0;;
-            });
-            setSupplierList(localSupplierList)
-        }
-        if (!sortList[choosedColumn]) {
-            localSupplierList.sort((a, b) => {
-                if (a[choosedColumn].toLowerCase() > b[choosedColumn].toLowerCase()) {
-                    return -1;
-                }
-                if (a[choosedColumn].toLowerCase() < b[choosedColumn].toLowerCase()) {
-                    return 1;
-                }
-                return 0;;
-            });
-            setSupplierList(localSupplierList)
-        }
-    }
-
-    function sortNumber(localSupplierList, choosedColumn) {
-        if (sortList[choosedColumn]) {
-            localSupplierList.sort((a, b) => {
-                return a[choosedColumn] - b[choosedColumn];
-            });
-            setSupplierList(localSupplierList)
-        }
-        if (!sortList[choosedColumn]) {
-            localSupplierList.sort((a, b) => {
-                return b[choosedColumn] - a[choosedColumn];
-            });
-            setSupplierList(localSupplierList)
-        }
-    }
-
-    function toogleSortOfList(choosedColumn) {
+    function sortListByColumn(choosedColumn) {
         const resetSort = {
             name: false,
             origin_state: false,
@@ -82,10 +42,11 @@ export default function Table() {
         let localSupplierList = [...supplierList]
 
         if (choosedColumn === "name" || choosedColumn === "origin_state") {
-            sortString(localSupplierList, choosedColumn)
+            localSupplierList = sortList[choosedColumn] ? sortUpString(localSupplierList, choosedColumn) : sortDownString(localSupplierList, choosedColumn)
         } else {
-            sortNumber(localSupplierList, choosedColumn)
+            localSupplierList = sortList[choosedColumn] ? sortUpNumber(localSupplierList, choosedColumn) : sortDownNumber(localSupplierList, choosedColumn)
         }
+        setSupplierList(localSupplierList)
     }
 
     function ajustPage(list) {
@@ -119,7 +80,6 @@ export default function Table() {
         setPage(increasedPage)
     }
 
-
     return (
         <div className='table'>
             <div className='table-header'>
@@ -130,7 +90,7 @@ export default function Table() {
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                        onClick={() => toogleSortOfList("name")}
+                        onClick={() => sortListByColumn("name")}
                     />
                 </div>
 
@@ -140,7 +100,7 @@ export default function Table() {
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                        onClick={() => toogleSortOfList("origin_state")}
+                        onClick={() => sortListByColumn("origin_state")}
                     />
                 </div>
 
@@ -150,7 +110,7 @@ export default function Table() {
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                        onClick={() => toogleSortOfList("cost_per_kwh")}
+                        onClick={() => sortListByColumn("cost_per_kwh")}
                     />
                 </div>
 
@@ -160,7 +120,7 @@ export default function Table() {
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                        onClick={() => toogleSortOfList("total_costumers")}
+                        onClick={() => sortListByColumn("total_costumers")}
                     />
                 </div>
 
@@ -170,7 +130,7 @@ export default function Table() {
                         className="triangle-img"
                         src={Triangle}
                         alt="ordenar-lista"
-                        onClick={() => toogleSortOfList("costumers_score")}
+                        onClick={() => sortListByColumn("costumers_score")}
                     />
                 </div>
             </div>

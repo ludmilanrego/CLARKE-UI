@@ -7,7 +7,7 @@ import UserContext from '../../contexts/UserContext';
 
 export default function FormContainer() {
 
-    const { energyConsumption, setEnergyConsumption, supplierList, setSupplierList } = useContext(UserContext)
+    const { setEnergyConsumption, setSupplierList } = useContext(UserContext)
 
     const [userForm, setUserForm] = useState(
         {
@@ -15,20 +15,17 @@ export default function FormContainer() {
         }
     );
 
-    async function requestSupplierList(parametro) {
+    async function requestSupplierList(value) {
 
-        console.log({ energyConsumption })
         try {
             const { data } = await api.post('/suppliers/minkwh', {
-                energyConsumption: parametro.value
+                energyConsumption: value
             }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
 
-
-            console.log(data)
             setSupplierList(data)
             return
         } catch (error) {
@@ -44,35 +41,23 @@ export default function FormContainer() {
             return;
         }
 
-        setEnergyConsumption(
-            {
-                definedStatus: true,
-                value: userForm.energyConsumptionValue
-
-            })
-
-        console.log(energyConsumption)
-
-        requestSupplierList({
+        setEnergyConsumption({
             definedStatus: true,
             value: userForm.energyConsumptionValue
-
         })
 
+        requestSupplierList(userForm.energyConsumptionValue)
     }
 
     function handleForm(event) {
         event.preventDefault();
         event.stopPropagation();
-
         setUserForm({ ...userForm, [event.target.name]: event.target.value })
-        console.log(userForm)
-        console.log(event.target.name, event.target.value)
     }
 
     return (
         <>
-            <div className="form-img"></div>
+            <div className="form-img" />
             <div className="form-container">
                 <form className='user-form'
                     onSubmit={(event) => handleSubmit(event)}
@@ -91,7 +76,6 @@ export default function FormContainer() {
                         type='submit'
                     >Confirmar</button>
                 </form>
-
             </div>
         </>
     )

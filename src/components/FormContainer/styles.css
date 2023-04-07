@@ -23,7 +23,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 .input-container label {
@@ -78,7 +77,6 @@
 
     .form-container {
         width: 100vw;
-
     }
 }
 
