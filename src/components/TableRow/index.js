@@ -22,7 +22,7 @@ export default function TableRow({ supplier }) {
             </div>
 
             <div className='table-row-section cost-per-kwh'>
-                <span className='description'>{supplier.cost_per_kwh}</span>
+                <span className='description'>{supplier.cost_per_kwh / 100}</span>
             </div>
 
             <div className='table-row-section total-clients'>

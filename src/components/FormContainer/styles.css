@@ -57,6 +57,12 @@
     align-items: center;
 }
 
+.warning-span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--wp--preset--color--vivid-green-cyan);
+}
+
 .form-confirm-button {
     width: 23.6rem;
     height: 4.6rem;
@@ -80,7 +86,7 @@
     }
 }
 
-@media (max-width:450px) {
+@media (max-width:480px) {
 
     .input-container label {
         font-size: 2rem;
@@ -89,4 +95,23 @@
     .input-container input {
         width: 25rem;
     }
+
+    .warning-span {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width:380px) {
+
+    .input-container label {
+        font-size: 1.7rem;
+    }
+
+    .form-confirm-button {
+        width: 18rem;
+        height: 3rem;
+
+        margin-top: 1rem;
+    }
+
 }

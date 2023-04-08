@@ -18,6 +18,10 @@
     line-height: 1.7rem;
 
     color: #000000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .table-row-logo {
@@ -51,4 +55,39 @@
 
 .score {
     width: 17%;
+}
+
+@media (max-width:600px) {
+
+    .table-row {
+        min-width: 30rem;
+    }
+
+    .table-row-logo {
+        display: none;
+    }
+
+    .description {
+        font-size: 1.1rem;
+    }
+
+    .name {
+        width: 30%;
+    }
+
+    .origin-state {
+        width: 20%;
+    }
+
+    .cost-per-kwh {
+        width: 18%;
+    }
+
+    .total-clients {
+        width: 16%;
+    }
+
+    .score {
+        width: 16%;
+    }
 }

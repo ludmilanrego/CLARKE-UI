@@ -1,21 +1,17 @@
 import './styles.css';
+import ArrowDown from '../../assets/down-arrow.svg'
+import ArrowUp from '../../assets/arrow-up.svg'
+import ArrowLeft from '../../assets/left-chevron.svg'
+import ArrowRight from '../../assets/right-arrow.svg'
 
-import Triangle from '../../assets/Triangle.svg'
-import { useState } from 'react'
 import TableRow from '../TableRow';
-
-import NavRight from '../../assets/navigate_right.png';
-import NavLeft from '../../assets/navigate_left.png';
-
-import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-
-import { sortUpString, sortDownString, sortUpNumber, sortDownNumber } from '../../utils/sort'
+import { useState, useContext } from 'react'
+import { sortListByColumn } from '../../utils/sort'
 
 export default function Table() {
 
     const { supplierList, setSupplierList } = useContext(UserContext)
-
     const [sortList, setSortList] = useState(
         {
             name: false,
@@ -27,27 +23,6 @@ export default function Table() {
 
     const [page, setPage] = useState(1)
     const maxNumberPerPage = 5
-
-    function sortListByColumn(choosedColumn) {
-        const resetSort = {
-            name: false,
-            origin_state: false,
-            cost_per: false,
-            total_costumers: false,
-            costumers_score: false
-        }
-
-        setSortList({ ...resetSort, [choosedColumn]: !sortList[choosedColumn] })
-
-        let localSupplierList = [...supplierList]
-
-        if (choosedColumn === "name" || choosedColumn === "origin_state") {
-            localSupplierList = sortList[choosedColumn] ? sortUpString(localSupplierList, choosedColumn) : sortDownString(localSupplierList, choosedColumn)
-        } else {
-            localSupplierList = sortList[choosedColumn] ? sortUpNumber(localSupplierList, choosedColumn) : sortDownNumber(localSupplierList, choosedColumn)
-        }
-        setSupplierList(localSupplierList)
-    }
 
     function ajustPage(list) {
         const itemsCountEnd = (maxNumberPerPage * page);
@@ -85,53 +60,53 @@ export default function Table() {
             <div className='table-header'>
                 <div className='table-row-section table-row-logo'></div>
                 <div className='table-row-section name'>
-                    <span className='description'> Fornecedor </span>
                     <img
-                        className="triangle-img"
-                        src={Triangle}
+                        className="arrow-img"
+                        src={sortList.name ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("name")}
+                        onClick={() => sortListByColumn("name", sortList, setSortList, supplierList, setSupplierList)}
                     />
+                    <span className='description'> Fornecedor </span>
                 </div>
 
                 <div className='table-row-section origin-state'>
-                    <span className='description'>Estado de Origem</span>
                     <img
-                        className="triangle-img"
-                        src={Triangle}
+                        className="arrow-img"
+                        src={sortList.origin_state ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("origin_state")}
+                        onClick={() => sortListByColumn("origin_state", sortList, setSortList, supplierList, setSupplierList)}
                     />
+                    <span className='description'>Estado</span>
                 </div>
 
                 <div className='table-row-section cost-per-kwh'>
-                    <span className='description'>Custo/kWh</span>
                     <img
-                        className="triangle-img"
-                        src={Triangle}
+                        className="arrow-img"
+                        src={sortList.cost_per_kwh ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("cost_per_kwh")}
+                        onClick={() => sortListByColumn("cost_per_kwh", sortList, setSortList, supplierList, setSupplierList)}
                     />
+                    <span className='description'>Custo/kWh</span>
                 </div>
 
                 <div className='table-row-section total-clients'>
-                    <span className='description'>Número Total de Clientes</span>
                     <img
-                        className="triangle-img"
-                        src={Triangle}
+                        className="arrow-img"
+                        src={sortList.total_costumers ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("total_costumers")}
+                        onClick={() => sortListByColumn("total_costumers", sortList, setSortList, supplierList, setSupplierList)}
                     />
+                    <span className='description'>Clientes</span>
                 </div>
 
                 <div className='table-row-section score'>
-                    <span className='description'>Avaliação de Clientes</span>
                     <img
-                        className="triangle-img"
-                        src={Triangle}
+                        className="arrow-img"
+                        src={sortList.costumers_score ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("costumers_score")}
+                        onClick={() => sortListByColumn("costumers_score", sortList, setSortList, supplierList, setSupplierList)}
                     />
+                    <span className='description'>Avaliação</span>
                 </div>
             </div>
             {
@@ -145,13 +120,13 @@ export default function Table() {
             <div className='table-footer'>
                 <img
                     className="page-nav-img"
-                    src={NavLeft}
+                    src={ArrowLeft}
                     alt="retomar-pagina"
                     onClick={(event) => decreasePage(event)}
                 />
                 <img
                     className="page-nav-img"
-                    src={NavRight}
+                    src={ArrowRight}
                     alt="avançar-pagina"
                     onClick={(event) => increasePage(event, supplierList)}
                 />

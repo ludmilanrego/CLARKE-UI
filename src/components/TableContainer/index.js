@@ -1,15 +1,14 @@
 import './styles.css';
 import Table from '../Table';
-
-import { useContext } from 'react';
 import UserContext from '../../contexts/UserContext';
-
-// import Filter from '../../components/Filter';
-// import FilterBox from '../../components/FilterBox';
+import ArrowDown from '../../assets/down-arrow.svg'
+import { useContext, useState } from 'react';
+import { sortListByItem } from '../../utils/sort'
 
 export default function TableContainer() {
 
-    const { setEnergyConsumption } = useContext(UserContext)
+    const { setEnergyConsumption, supplierList, setSupplierList } = useContext(UserContext)
+    const [showSortList, setShowSortList] = useState(false)
 
     function clearEnergyConsumptionValue() {
         setEnergyConsumption(
@@ -18,13 +17,46 @@ export default function TableContainer() {
             })
     }
 
+    function toggleShowSortList() {
+        setShowSortList(!showSortList)
+    }
+
     return (
         <div className='filter-and-table'>
-            <div>
-                {/* <Filter ></Filter>
-                <FilterBox></FilterBox> */}
+            <div className='sort'
+                onClick={() => { toggleShowSortList() }}>
+                <img
+                    className="sort-icon"
+                    src={ArrowDown}
+                    alt="ordenar-lista"
+                />
+                <span> ORDENAR </span>
             </div>
-            <Table></Table>
+            {showSortList &&
+                <div className='sort-by-list'>
+                    <div className='sort-by-item'
+                        onClick={() => sortListByItem("name", supplierList, setSupplierList, setShowSortList)}
+                    >
+                        <span>NOME</span>
+                    </div>
+                    <div className='sort-by-item'
+                        onClick={() => sortListByItem("origin_state", supplierList, setSupplierList, setShowSortList)}>
+                        <span>ESTADO</span>
+                    </div>
+                    <div className='sort-by-item'
+                        onClick={() => sortListByItem("cost_per_kwh", supplierList, setSupplierList, setShowSortList)}>
+                        <span>CUSTO POR KWH</span>
+                    </div>
+                    <div className='sort-by-item'
+                        onClick={() => sortListByItem("total_costumers", supplierList, setSupplierList, setShowSortList)}>
+                        <span>NUMERO CLIENTES</span>
+                    </div>
+                    <div className='sort-by-item'
+                        onClick={() => sortListByItem("costumers_score", supplierList, setSupplierList, setShowSortList)}>
+                        <span>AVALIAÇÃO</span>
+                    </div>
+                </div>}
+            <Table />
             <button className='set-new-consumption-button'
                 onClick={() => { clearEnergyConsumptionValue() }}
             >Alterar Consumo Mensal</button>

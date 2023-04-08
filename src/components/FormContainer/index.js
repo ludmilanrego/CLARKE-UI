@@ -8,7 +8,7 @@ import UserContext from '../../contexts/UserContext';
 export default function FormContainer() {
 
     const { setEnergyConsumption, setSupplierList } = useContext(UserContext)
-
+    const [warningSpan, setWarningSpan] = useState('')
     const [userForm, setUserForm] = useState(
         {
             energyConsumptionValue: ""
@@ -25,10 +25,20 @@ export default function FormContainer() {
                     'Content-Type': 'application/json'
                 }
             });
+            setEnergyConsumption({
+                definedStatus: true,
+                value: userForm.energyConsumptionValue
+            })
 
             setSupplierList(data)
             return
         } catch (error) {
+            if (error.response.data === "Não existe fornecedor disponível para esse valor consumo") {
+                setWarningSpan("Valor de consumo inferior ao valor mínimo necessário")
+                setTimeout(() => {
+                    setWarningSpan('')
+                }, 5000);
+            }
             console.log(error)
         }
     }
@@ -40,12 +50,6 @@ export default function FormContainer() {
         if (!userForm.energyConsumptionValue) {
             return;
         }
-
-        setEnergyConsumption({
-            definedStatus: true,
-            value: userForm.energyConsumptionValue
-        })
-
         requestSupplierList(userForm.energyConsumptionValue)
     }
 
@@ -71,6 +75,7 @@ export default function FormContainer() {
                             onChange={(event) => handleForm(event)}
                         />
                     </div>
+                    <span className='warning-span'>{warningSpan}</span>
                     <button
                         className='form-confirm-button'
                         type='submit'

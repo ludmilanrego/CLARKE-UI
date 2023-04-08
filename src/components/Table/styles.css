@@ -2,6 +2,9 @@
     margin-top: 6.1rem;
     max-width: 100%;
     overflow: auto;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .table-header {
@@ -29,9 +32,8 @@
     color: #000000;
 }
 
-.triangle-img {
+.arrow-img {
     width: 1.5rem;
-    height: 8rem;
     cursor: pointer;
 }
 
@@ -65,18 +67,34 @@
 
 .origin-state {
     width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .cost-per-kwh {
     width: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .total-clients {
     width: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .score {
     width: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .table-footer {
@@ -96,11 +114,49 @@
 
 .page-nav-img {
     cursor: pointer;
+    width: 2rem;
+    height: 2rem;
 }
 
-/* @media (max-width:998px) {
+@media (max-width:600px) {
 
-    .table {
-        overflow-x: scroll;
+    .table-header {
+        min-width: 30rem;
     }
-} */
+
+    .table-header span {
+        font-size: 1.2rem;
+    }
+
+    .table-footer {
+        min-width: 30rem;
+    }
+
+    .table-row-logo {
+        display: none;
+    }
+
+    .name {
+        width: 24%;
+    }
+
+    .origin-state {
+        width: 20%;
+    }
+
+    .cost-per-kwh {
+        width: 20%;
+    }
+
+    .total-clients {
+        width: 18%;
+    }
+
+    .score {
+        width: 18%;
+    }
+
+    .arrow-img {
+        display: none;
+    }
+}
