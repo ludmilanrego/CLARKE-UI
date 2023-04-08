@@ -30,7 +30,7 @@ export default function TableRow({ supplier }) {
             </div>
 
             <div className='table-row-section score'>
-                <span className='description'>{supplier.costumers_score}</span>
+                <span className='description'>{supplier.customers_score}</span>
             </div>
         </div >
     )

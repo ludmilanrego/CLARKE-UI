@@ -4,11 +4,12 @@
 }
 
 main {
-    background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray);
-    width: 100%;
-    min-height: 90vh;
-
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    width: 100%;
+    min-height: 90vh;
+
+    background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray);
 }

@@ -48,11 +48,11 @@ export default function TableContainer() {
                         <span>CUSTO POR KWH</span>
                     </div>
                     <div className='sort-by-item'
-                        onClick={() => sortListByItem("total_costumers", supplierList, setSupplierList, setShowSortList)}>
+                        onClick={() => sortListByItem("total_customers", supplierList, setSupplierList, setShowSortList)}>
                         <span>NUMERO CLIENTES</span>
                     </div>
                     <div className='sort-by-item'
-                        onClick={() => sortListByItem("costumers_score", supplierList, setSupplierList, setShowSortList)}>
+                        onClick={() => sortListByItem("customers_score", supplierList, setSupplierList, setShowSortList)}>
                         <span>AVALIAÇÃO</span>
                     </div>
                 </div>}

@@ -47,8 +47,8 @@ export function sortListByColumn(choosedColumn, sortList, setSortList, supplierL
         name: false,
         origin_state: false,
         cost_per: false,
-        total_costumers: false,
-        costumers_score: false
+        total_customers: false,
+        customers_score: false
     }
 
     setSortList({ ...resetSort, [choosedColumn]: !sortList[choosedColumn] })

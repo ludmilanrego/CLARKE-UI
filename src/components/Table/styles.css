@@ -1,10 +1,9 @@
 .table {
-    margin-top: 6.1rem;
     max-width: 100%;
-    overflow: auto;
-
+    margin-top: 6.1rem;
     padding-right: 1rem;
     padding-left: 1rem;
+    overflow: auto;
 }
 
 .table-header {
@@ -14,12 +13,11 @@
 
     min-width: 60rem;
     height: 5.8rem;
+    margin-bottom: 0.5rem;
 
     background: var(--light-gray);
     box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-
-    margin-bottom: 0.5rem;
 }
 
 .table-header span {
@@ -28,12 +26,12 @@
     font-weight: 700;
     font-size: 1.4rem;
     line-height: 1.7rem;
-
     color: #000000;
 }
 
 .arrow-img {
     width: 1.5rem;
+
     cursor: pointer;
 }
 
@@ -43,7 +41,6 @@
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 1.7rem;
-
     color: #000000;
 }
 
@@ -58,42 +55,47 @@
 }
 
 .name {
-    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 20%;
     gap: 0.4rem;
 }
 
 .origin-state {
-    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 20%;
     gap: 0.4rem;
 }
 
 .cost-per-kwh {
-    width: 17%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 17%;
     gap: 0.4rem;
 }
 
 .total-clients {
-    width: 16%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 16%;
     gap: 0.4rem;
 }
 
 .score {
-    width: 17%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    width: 17%;
     gap: 0.4rem;
 }
 
@@ -104,21 +106,21 @@
 
     min-width: 60rem;
     height: 5.8rem;
+    margin-top: 0.5rem;
 
     background: var(--light-gray);
     box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-
-    margin-top: 0.5rem;
 }
 
 .page-nav-img {
-    cursor: pointer;
     width: 2rem;
     height: 2rem;
+
+    cursor: pointer;
 }
 
-@media (max-width:600px) {
+@media (max-width:730px) {
 
     .table-header {
         min-width: 30rem;

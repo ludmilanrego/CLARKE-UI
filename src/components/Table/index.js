@@ -17,8 +17,8 @@ export default function Table() {
             name: false,
             origin_state: false,
             cost_per: false,
-            total_costumers: false,
-            costumers_score: false
+            total_customers: false,
+            customers_score: false
         })
 
     const [page, setPage] = useState(1)
@@ -92,9 +92,9 @@ export default function Table() {
                 <div className='table-row-section total-clients'>
                     <img
                         className="arrow-img"
-                        src={sortList.total_costumers ? ArrowDown : ArrowUp}
+                        src={sortList.total_customers ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("total_costumers", sortList, setSortList, supplierList, setSupplierList)}
+                        onClick={() => sortListByColumn("total_customers", sortList, setSortList, supplierList, setSupplierList)}
                     />
                     <span className='description'>Clientes</span>
                 </div>
@@ -102,9 +102,9 @@ export default function Table() {
                 <div className='table-row-section score'>
                     <img
                         className="arrow-img"
-                        src={sortList.costumers_score ? ArrowDown : ArrowUp}
+                        src={sortList.customers_score ? ArrowDown : ArrowUp}
                         alt="ordenar-lista"
-                        onClick={() => sortListByColumn("costumers_score", sortList, setSortList, supplierList, setSupplierList)}
+                        onClick={() => sortListByColumn("customers_score", sortList, setSortList, supplierList, setSupplierList)}
                     />
                     <span className='description'>Avaliação</span>
                 </div>

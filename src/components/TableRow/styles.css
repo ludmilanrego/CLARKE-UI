@@ -11,17 +11,16 @@
 }
 
 .description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 1.7rem;
-
     color: #000000;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .table-row-logo {
@@ -34,11 +33,12 @@
 }
 
 .name {
-    width: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.4rem;
+
+    width: 20%;
 }
 
 .origin-state {
@@ -57,7 +57,7 @@
     width: 17%;
 }
 
-@media (max-width:600px) {
+@media (max-width:730px) {
 
     .table-row {
         min-width: 30rem;
