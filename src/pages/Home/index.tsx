@@ -10,8 +10,24 @@ import UserContext from '../../contexts/UserContext';
 
 function Home() {
 
-    const [energyConsumption, setEnergyConsumption] = useState({ definedStatus: false })
-    const [supplierList, setSupplierList] = useState([])
+    interface EnergyConsumption {
+        definedStatus: Boolean;
+        value?: Number;
+    }
+
+    interface SupplierList {
+        id: number;
+        name: string;
+        img: string;
+        origin_state: string;
+        cost_per_kwh: number;
+        min_kwh: number;
+        total_customers: number;
+        costumers_score: number;
+    }
+
+    const [energyConsumption, setEnergyConsumption] = useState<EnergyConsumption>({ definedStatus: false })
+    const [supplierList, setSupplierList] = useState<SupplierList[]>([])
 
     return (
         <UserContext.Provider value={{

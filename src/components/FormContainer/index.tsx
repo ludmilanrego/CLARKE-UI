@@ -7,16 +7,20 @@ import UserContext from '../../contexts/UserContext';
 
 export default function FormContainer() {
 
+    interface UserForm {
+        energyConsumptionValue: Number;
+    }
+
     const { setEnergyConsumption, setSupplierList } = useContext(UserContext)
-    const [warningSpan, setWarningSpan] = useState('')
-    const [userForm, setUserForm] = useState(
+    const [warningSpan, setWarningSpan] = useState<string>('')
+    const [userForm, setUserForm] = useState<UserForm>(
         {
-            energyConsumptionValue: ""
+            energyConsumptionValue: 0
         }
     );
 
-    async function requestSupplierList(value) {
-
+    async function requestSupplierList(value: number) {
+        // nesse caso coloca void???
         try {
             const { data } = await api.post('/suppliers/minkwh', {
                 energyConsumption: value
@@ -44,6 +48,7 @@ export default function FormContainer() {
     }
 
     async function handleSubmit(event) {
+        // event é classificado que tipo?
         event.preventDefault();
         event.stopPropagation();
 

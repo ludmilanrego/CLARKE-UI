@@ -8,7 +8,7 @@ import { sortListByItem } from '../../utils/sort'
 export default function TableContainer() {
 
     const { setEnergyConsumption, supplierList, setSupplierList } = useContext(UserContext)
-    const [showSortList, setShowSortList] = useState(false)
+    const [showSortList, setShowSortList] = useState<Boolean>(false)
 
     function clearEnergyConsumptionValue() {
         setEnergyConsumption(

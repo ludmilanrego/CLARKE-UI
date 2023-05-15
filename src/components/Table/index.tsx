@@ -11,27 +11,46 @@ import { sortListByColumn } from '../../utils/sort'
 
 export default function Table() {
 
+    interface SortList {
+        name: Boolean;
+        origin_state: Boolean;
+        cost_per_kwh: Boolean;
+        total_customers: Boolean;
+        customers_score: Boolean;
+    }
+
+    interface SupplierList {
+        id: number;
+        name: string;
+        img: string;
+        origin_state: string;
+        cost_per_kwh: number;
+        min_kwh: number;
+        total_customers: number;
+        costumers_score: number;
+    }
+
     const { supplierList, setSupplierList } = useContext(UserContext)
-    const [sortList, setSortList] = useState(
+    const [sortList, setSortList] = useState<SortList>(
         {
             name: false,
             origin_state: false,
-            cost_per: false,
+            cost_per_kwh: false,
             total_customers: false,
             customers_score: false
         })
 
-    const [page, setPage] = useState(1)
-    const maxNumberPerPage = 5
+    const [page, setPage] = useState<number>(1)
+    const maxNumberPerPage: number = 5
 
-    function ajustPage(list) {
-        const itemsCountEnd = (maxNumberPerPage * page);
-        const itemsCountStart = maxNumberPerPage * (page - 1);
+    function ajustPage(list: SupplierList[]): SupplierList[] {
+        const itemsCountEnd: number = (maxNumberPerPage * page);
+        const itemsCountStart: number = maxNumberPerPage * (page - 1);
 
         return list.slice(itemsCountStart, itemsCountEnd)
     }
 
-    function decreasePage(event) {
+    function decreasePage(event): void {
         event.preventDefault();
         event.stopPropagation();
 
@@ -39,11 +58,11 @@ export default function Table() {
             return
         }
 
-        const decreasedPage = page - 1
+        const decreasedPage: number = page - 1
         setPage(decreasedPage)
     }
 
-    function increasePage(event, list) {
+    function increasePage(event, list: SupplierList[]): void {
         event.preventDefault();
         event.stopPropagation();
 
@@ -51,7 +70,7 @@ export default function Table() {
             return
         }
 
-        const increasedPage = page + 1
+        const increasedPage: number = page + 1
         setPage(increasedPage)
     }
 

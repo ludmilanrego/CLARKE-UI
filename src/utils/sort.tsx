@@ -1,3 +1,5 @@
+// nesses casos de funções genáricas eu tipo?
+
 export function sortUpString(list, mainProperty) {
 
     list.sort((a, b) => {
